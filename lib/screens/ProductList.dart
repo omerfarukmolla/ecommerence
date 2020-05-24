@@ -1,5 +1,23 @@
+import 'package:ecommerce/widgets/listpost.dart';
 import 'package:ecommerce/widgets/productListRow.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
+import 'package:ecommerce/model/Products.dart';
+
+List<Products> parsePosts(String responseBody) {
+  final parsed = convert.jsonDecode(responseBody).cast<Map<String, dynamic>>();
+
+  return parsed.map<Products>((json) => Products.fromJson(json)).toList();
+}
+
+Future<List<Products>> fetchPosts(http.Client client) async {
+  final response =
+      await client.get('http://ecommerence.herokuapp.com/Products');
+
+  return compute(parsePosts, response.body);
+}
 
 class ProductList extends StatelessWidget {
   BuildContext context;
@@ -15,79 +33,16 @@ class ProductList extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
-      body: _buildProductListPage(),
-    );
-  }
+      body: FutureBuilder<List<Products>>(
+        future: fetchPosts(http.Client()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
 
-  _buildProductListPage() {
-    Size screenSize = MediaQuery.of(context).size;
-
-    return Container(
-      child: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return _buildFilterWidgets(screenSize);
-          } else if (index == 4) {
-            return SizedBox(
-              height: 12.0,
-            );
-          } else {
-            return _buildProductListRow();
-          }
+          return snapshot.hasData
+              ? ListViewPosts(posts: snapshot.data)
+              : Center(child: CircularProgressIndicator());
         },
       ),
     );
-  }
-
-  _buildFilterWidgets(Size screenSize) {
-    return Container(
-      margin: EdgeInsets.all(12.0),
-      width: screenSize.width,
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _buildFilterButton("Sırala"),
-              Container(
-                color: Colors.black,
-                width: 2.0,
-                height: 24.0,
-              ),
-              _buildFilterButton("Filtrele"),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  _buildFilterButton(String title) {
-    return InkWell(
-      onTap:(){
-        print(title);
-      },
-      child: Row(
-        children: <Widget>[
-          Icon(Icons.arrow_drop_down, color: Colors.black),
-          SizedBox(
-            width: 2.0,
-          ),
-          Text(title)
-        ],
-      ),
-    );
-  }
-
-  _buildProductListRow() {
-    return ProductListRow(
-        name: "Kazak",
-        currentPrince: 150,
-        orginalPrice: 300,
-        discount: 50,
-        imageUrl: "https://picsum.photos/200/300");
-        
   }
 }

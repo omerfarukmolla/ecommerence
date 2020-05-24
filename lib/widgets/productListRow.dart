@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class ProductListRow extends StatelessWidget {
   String name;
-  int currentPrince;
-  int orginalPrice;
+  double currentPrince;
+  double orginalPrice;
   int discount;
   String imageUrl;
 
@@ -19,7 +19,6 @@ class ProductListRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        _buildProductItemCard(context),
         _buildProductItemCard(context)
       ],
     );
@@ -35,7 +34,7 @@ class ProductListRow extends StatelessWidget {
           children: <Widget>[
             Container(
               child: Image.network(this.imageUrl),
-              height: 250.0,
+              height: 250,
               width: MediaQuery.of(context).size.width / 2.2,
             ),
             SizedBox(height: 8.0),
