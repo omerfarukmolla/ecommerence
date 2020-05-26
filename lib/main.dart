@@ -18,7 +18,17 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: ProductList(),
-      routes: Routes.routes,
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+          builder: (BuildContext context) => makeRoute(
+                context: context,
+                routeName: settings.name,
+                arguments: settings.arguments,
+              ),
+          maintainState: true,
+          fullscreenDialog: false,
+        );
+      },
     );
   }
 }

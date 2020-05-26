@@ -78,6 +78,8 @@ class ListViewPosts extends StatelessWidget {
         currentPrince: pr.Proprice,
         orginalPrice: pr.Proprice * 2,
         discount: 50,
-        imageUrl: "https://picsum.photos/200/300");
+        imageUrl: pr.LProductschild.length>0?pr.LProductschild[0].Prochmainimg:"",
+        prd:pr
+        );
   }
 }

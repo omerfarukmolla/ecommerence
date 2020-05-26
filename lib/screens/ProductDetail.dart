@@ -1,11 +1,18 @@
+import 'package:ecommerce/model/ProductschildArgument.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetail extends StatefulWidget {
+   final ProductschildArgument _arguments ;
+ProductDetail({@required ProductschildArgument arguments}) : _arguments = arguments;
+
+
   @override
-  State<StatefulWidget> createState() => _ProductDetailState();
+  State<StatefulWidget> createState() => _ProductDetailState(_arguments);
 }
 
 class _ProductDetailState extends State with TickerProviderStateMixin {
+  final ProductschildArgument arguments ;
+  _ProductDetailState(this.arguments);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +95,7 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
                   controller: imagesController,
                   children: <Widget>[
                     Image.network(
-                        "https://images-na.ssl-images-amazon.com/images/I/61fPY2WLkTL._UX385_.jpg"),
+                        this.arguments.pr.LProductschild[0].Prochimg1),
                     Image.network(
                         "https://images-na.ssl-images-amazon.com/images/I/61fPY2WLkTL._UX385_.jpg"),
                     Image.network(

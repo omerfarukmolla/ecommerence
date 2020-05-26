@@ -1,3 +1,5 @@
+import 'package:ecommerce/model/Products.dart';
+import 'package:ecommerce/model/ProductschildArgument.dart';
 import 'package:ecommerce/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +9,15 @@ class ProductListRow extends StatelessWidget {
   double orginalPrice;
   int discount;
   String imageUrl;
+  Products prd;
 
   ProductListRow(
       {this.name,
       this.currentPrince,
       this.orginalPrice,
       this.discount,
-      this.imageUrl});
+      this.imageUrl,
+      this.prd});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,8 @@ class ProductListRow extends StatelessWidget {
   _buildProductItemCard(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Constants.ROUTE_PROUDCT_DETAIL);
+  
+        Navigator.of(context).pushNamed(Constants.ROUTE_PROUDCT_DETAIL,arguments:ProductschildArgument(this.prd));
       },
       child: Card(
         child: Column(
