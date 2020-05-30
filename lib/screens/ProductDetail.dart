@@ -1,5 +1,8 @@
 import 'package:ecommerce/model/ProductschildArgument.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 class ProductDetail extends StatefulWidget {
    final ProductschildArgument _arguments ;
@@ -122,7 +125,7 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       padding: EdgeInsets.symmetric(horizontal: 12.0),
       child: Center(
         child: Text(
-          "Jack Jones Kazak",
+          this.arguments.pr.Proname,
           style: TextStyle(fontSize: 16.0, color: Colors.black),
         ),
       ),
@@ -261,7 +264,29 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       ),
     );
   }
-
+// user defined function
+  void _showDialog(String msg) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Mesaj"),
+          content: new Text(msg),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Kapat"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   _buildButtomNavigationBar() {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -291,7 +316,26 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
             fit: FlexFit.tight,
             flex: 1,
             child: RaisedButton(
-              onPressed: () {},
+              onPressed: () async {
+                Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+                final SharedPreferences prefs = await _prefs;
+                int ordID = prefs.getInt("orderID");
+                int proid = this.arguments.pr.Proid;
+                double price = this.arguments.pr.Proprice;
+                final responseOrder = await http.Client().post(
+                'http://ecommerence.herokuapp.com/OrdersChild/Insert',
+                headers: <String, String>{
+                  'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: convert.jsonEncode(<String, String>{
+                  "Ordchordid": ordID.toString(),
+                  "Ordchproid": proid.toString(),
+                  "Ordchprice":price.toString(),
+                  "Ordchdatedime":DateTime.now().toIso8601String(),
+
+                }));
+                _showDialog("Sepete Eklendi.");
+              },
               color: Colors.greenAccent,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

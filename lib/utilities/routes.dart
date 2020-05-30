@@ -1,5 +1,6 @@
 import 'package:ecommerce/Screens/ProductDetail.dart';
 import 'package:ecommerce/model/ProductschildArgument.dart';
+import 'package:ecommerce/screens/ProductBasket.dart';
 import 'package:ecommerce/screens/ProductList.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,9 @@ Widget _buildRoute({
       return ProductList();
     case '/productDetail':
       ProductschildArgument article = arguments as ProductschildArgument;
-      return ProductDetail(arguments:article);
+      return ProductDetail(arguments: article);
+    case '/ProductsBasket':
+      return ProductsBasket();
     default:
       throw 'Route $routeName is not defined';
   }
