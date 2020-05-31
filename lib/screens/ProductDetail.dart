@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import '../utilities/constants.dart';
 
 class ProductDetail extends StatefulWidget {
    final ProductschildArgument _arguments ;
@@ -30,7 +31,20 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
             onPressed: () {
               Navigator.of(context).pop();
             },
+          
           ),
+           actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.shopping_basket,
+              color: Colors.black,
+            ),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.of(context).pushNamed(Constants.ROUTE_PRODUCT_BASKET);
+            },
+          )
+        ],
           backgroundColor: Colors.white,
           title: Text(
             "Product Detail",

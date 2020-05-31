@@ -25,7 +25,11 @@ Future<List<Products>> fetchPosts(
   final response =
       await client.get('http://ecommerence.herokuapp.com/Products');
   var now = new DateTime.now();
-  final responseOrder = await client.post(
+  final SharedPreferences prefs = await _prefs;
+  //prefs.clear();
+  if (prefs.getInt("orderID") == null) {
+    Orders order;
+    final responseOrder = await client.post(
       'http://ecommerence.herokuapp.com/Orders/Insert',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -34,10 +38,6 @@ Future<List<Products>> fetchPosts(
         "orddatetime": now.toIso8601String(),
         "ordamount": "0"
       }));
-
-  final SharedPreferences prefs = await _prefs;
-  if (prefs.getInt("orderID") == null) {
-    Orders order;
     await compute(parseOrders, responseOrder.body)
         .then((value) => order = value);
     prefs.setInt("orderID", order.ordid);
@@ -85,6 +85,7 @@ class ProductList extends StatelessWidget {
               : Center(child: CircularProgressIndicator());
         },
       ),
+      
     );
   }
 }
