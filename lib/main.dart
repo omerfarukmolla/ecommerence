@@ -1,6 +1,7 @@
-import 'package:ecommerce/Screens/ProductList.dart';
+
 import 'package:flutter/material.dart';
 
+import 'screens/ProductList.dart';
 import 'utilities/routes.dart';
 
 void main() {

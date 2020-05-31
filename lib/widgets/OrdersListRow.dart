@@ -1,6 +1,4 @@
-import 'package:ecommerce/model/Products.dart';
-import 'package:ecommerce/model/ProductschildArgument.dart';
-import 'package:ecommerce/utilities/constants.dart';
+import '../model/Products.dart';
 import 'package:flutter/material.dart';
 
 class OrdersListRow extends StatelessWidget {
@@ -23,23 +21,23 @@ class OrdersListRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        _buildProductItemCard(context)
+        _buildProductitemForBasket(context)
       ],
     );
   }
 
-  _buildProductItemCard(BuildContext context) {
+  _buildProductitemForBasket(BuildContext context) {
     return InkWell(
       onTap: () {
   
         //Navigator.of(context).pushNamed("/",arguments:ProductschildArgument(this.prd));
       },
       child: Card(
-        child: Column(
+        child: Row(
           children: <Widget>[
             Container(
               child: Image.network(this.imageUrl),
-              height: 250,
+              height: 50,
               width: MediaQuery.of(context).size.width / 2.2,
             ),
             SizedBox(height: 8.0),

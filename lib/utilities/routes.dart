@@ -1,7 +1,7 @@
-import 'package:ecommerce/Screens/ProductDetail.dart';
-import 'package:ecommerce/model/ProductschildArgument.dart';
-import 'package:ecommerce/screens/ProductBasket.dart';
-import 'package:ecommerce/screens/ProductList.dart';
+import '../Screens/ProductDetail.dart';
+import '../model/ProductschildArgument.dart';
+import '../screens/ProductBasket.dart';
+import '../screens/ProductList.dart';
 import 'package:flutter/material.dart';
 
 Widget makeRoute(

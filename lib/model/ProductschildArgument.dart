@@ -1,4 +1,4 @@
-import 'package:ecommerce/model/Products.dart';
+import 'Products.dart';
 
 class ProductschildArgument {
   final Products pr;

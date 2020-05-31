@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:ecommerce/model/Orders.dart';
-import 'package:ecommerce/utilities/constants.dart';
-import 'package:ecommerce/widgets/listpost.dart';
+import '../model/Orders.dart';
+import '../utilities/constants.dart';
+import '../widgets/listpost.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:ecommerce/model/Products.dart';
+import '../model/Products.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 List<Products> parsePosts(String responseBody) {

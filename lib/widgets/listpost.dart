@@ -1,5 +1,5 @@
-import 'package:ecommerce/model/Products.dart';
-import 'package:ecommerce/widgets/productListRow.dart';
+import '../model/Products.dart';
+import '../widgets/productListRow.dart';
 import 'package:flutter/material.dart';
 
 class ListViewPosts extends StatelessWidget {

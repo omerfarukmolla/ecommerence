@@ -1,4 +1,4 @@
-import 'package:ecommerce/model/OrdersChild.dart';
+import 'OrdersChild.dart';
 
 class Orders {
   final int ordid;

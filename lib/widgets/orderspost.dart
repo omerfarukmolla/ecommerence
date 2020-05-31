@@ -1,7 +1,5 @@
-import 'package:ecommerce/model/OrdersChild.dart';
-import 'package:ecommerce/model/Products.dart';
-import 'package:ecommerce/widgets/OrdersListRow.dart';
-import 'package:ecommerce/widgets/productListRow.dart';
+import '../model/OrdersChild.dart';
+import '../widgets/OrdersListRow.dart';
 import 'package:flutter/material.dart';
 
 class OrdersViewPosts extends StatelessWidget {

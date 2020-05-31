@@ -1,6 +1,6 @@
-import 'package:ecommerce/model/Orders.dart';
-import 'package:ecommerce/model/OrdersChild.dart';
-import 'package:ecommerce/widgets/orderspost.dart';
+import '../model/Orders.dart';
+import '../model/OrdersChild.dart';
+import '../widgets/orderspost.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
-import 'package:ecommerce/model/Products.dart';
-import 'package:ecommerce/model/ProductschildArgument.dart';
-import 'package:ecommerce/utilities/constants.dart';
+import '../model/Products.dart';
+import '../model/ProductschildArgument.dart';
+import '../utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProductListRow extends StatelessWidget {
