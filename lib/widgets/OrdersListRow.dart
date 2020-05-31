@@ -1,5 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 import '../model/Products.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +31,7 @@ class OrdersListRow extends StatelessWidget {
     return Container(
       width: screenSize.width,
       child: Card(
+        color: Colors.white,
         child: Row(
           children: <Widget>[
             Container(
@@ -48,7 +47,7 @@ class OrdersListRow extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     this.name,
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                    style: TextStyle(fontSize: 16.0, color: Colors.black87),
                   ),
                   SizedBox(
                     height: 2.0,
@@ -58,21 +57,21 @@ class OrdersListRow extends StatelessWidget {
                     children: <Widget>[
                       Text("\$$currentPrince",
                           style:
-                              TextStyle(fontSize: 16.0, color: Colors.black)),
+                              TextStyle(fontSize: 16.0, color: Colors.black87,fontWeight: FontWeight.bold)),
                       SizedBox(
                         width: 8.0,
                       ),
                       Text("\$$orginalPrice",
                           style: TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 15.0,
                               color: Colors.grey,
-                              decoration: TextDecoration.lineThrough)),
+                              decoration: TextDecoration.lineThrough,fontWeight: FontWeight.bold)),
                       SizedBox(
                         width: 8.0,
                       ),
                       Text("$discount\% indirim",
                           style: TextStyle(
-                            fontSize: 12.0,
+                            fontSize: 14.0,
                             color: Colors.grey,
                           )),
                       SizedBox(

@@ -35,7 +35,9 @@ class ProductListRow extends StatelessWidget {
         Navigator.of(context).pushNamed(Constants.ROUTE_PROUDCT_DETAIL,arguments:ProductschildArgument(this.prd));
       },
       child: Card(
+        color: Colors.blueGrey[100],
         child: Column(
+          
           children: <Widget>[
             Container(
               child: Image.network(this.imageUrl),
@@ -50,7 +52,7 @@ class ProductListRow extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     this.name,
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                    style: TextStyle(fontSize: 15.0, color: Colors.black87,fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 2.0,
@@ -60,24 +62,24 @@ class ProductListRow extends StatelessWidget {
                     children: <Widget>[
                       Text("\$$currentPrince",
                           style:
-                              TextStyle(fontSize: 16.0, color: Colors.black)),
+                              TextStyle(fontSize: 16.0, color: Colors.black87,fontWeight: FontWeight.bold)),
                       SizedBox(
                         width: 8.0,
                       ),
                       Text("\$$orginalPrice",
                           style: TextStyle(
-                              fontSize: 12.0,
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough)),
+                              fontSize: 13.0,
+                              color: Colors.black54,
+                              decoration: TextDecoration.lineThrough,fontWeight: FontWeight.bold)),
                       SizedBox(
-                        width: 8.0,
+                        width: 5.0,
                       ),
                       Text("$discount\% indirim",
                           style: TextStyle(
-                              fontSize: 12.0,
-                              color: Colors.grey,)),
+                              fontSize: 11.0,
+                              color: Colors.black45,fontWeight: FontWeight.bold)),
                       SizedBox(
-                        width: 8.0,
+                        width: 5.0,
                       )
                     ],
                   )

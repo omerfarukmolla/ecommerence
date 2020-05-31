@@ -56,15 +56,16 @@ class ProductList extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
+        
         title: Text(
-          "Product List",
+          "Zehaşe BUTİK",
           style: TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
               Icons.shopping_basket,
-              color: Colors.black,
+              color: Colors.white,
             ),
             tooltip: 'Show Snackbar',
             onPressed: () {
@@ -72,7 +73,7 @@ class ProductList extends StatelessWidget {
             },
           )
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent[100],
         centerTitle: true,
       ),
       body: FutureBuilder<List<Products>>(

@@ -6,16 +6,16 @@ import 'dart:convert' as convert;
 import '../utilities/constants.dart';
 
 class ProductDetail extends StatefulWidget {
-   final ProductschildArgument _arguments ;
-ProductDetail({@required ProductschildArgument arguments}) : _arguments = arguments;
-
+  final ProductschildArgument _arguments;
+  ProductDetail({@required ProductschildArgument arguments})
+      : _arguments = arguments;
 
   @override
   State<StatefulWidget> createState() => _ProductDetailState(_arguments);
 }
 
 class _ProductDetailState extends State with TickerProviderStateMixin {
-  final ProductschildArgument arguments ;
+  final ProductschildArgument arguments;
   _ProductDetailState(this.arguments);
   @override
   Widget build(BuildContext context) {
@@ -31,23 +31,22 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
             onPressed: () {
               Navigator.of(context).pop();
             },
-          
           ),
-           actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.shopping_basket,
-              color: Colors.black,
-            ),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              Navigator.of(context).pushNamed(Constants.ROUTE_PRODUCT_BASKET);
-            },
-          )
-        ],
-          backgroundColor: Colors.white,
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.shopping_basket,
+                color: Colors.white,
+              ),
+              tooltip: 'Show Snackbar',
+              onPressed: () {
+                Navigator.of(context).pushNamed(Constants.ROUTE_PRODUCT_BASKET);
+              },
+            )
+          ],
+          backgroundColor: Colors.blueAccent[100],
           title: Text(
-            "Product Detail",
+            "Ürün Detayı",
             style: TextStyle(color: Colors.black),
           )),
       body: _buildProductDetails(context),
@@ -140,7 +139,10 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       child: Center(
         child: Text(
           this.arguments.pr.Proname,
-          style: TextStyle(fontSize: 16.0, color: Colors.black),
+          style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.black87,
+              fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -152,26 +154,34 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       child: Row(
         children: <Widget>[
           Text(
-            "\$100",
-            style: TextStyle(fontSize: 16.0, color: Colors.black),
+            this.arguments.pr.Proprice.toString() + "TL",
+            style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.black87,
+                fontWeight: FontWeight.bold),
           ),
           SizedBox(
             width: 8.0,
           ),
           Text(
-            "\$200",
+            (this.arguments.pr.Proprice * 2).toString() + "TL",
             style: TextStyle(
-                fontSize: 12.0,
-                color: Colors.grey,
-                decoration: TextDecoration.lineThrough),
-                
+              fontSize: 12.0,
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.lineThrough,
+            ),
           ),
           SizedBox(
             width: 8.0,
           ),
           Text(
             "\%50 indirim",
-            style: TextStyle(fontSize: 12.0, color: Colors.blue),
+            style: TextStyle(
+                fontSize: 13.0,
+                color: Colors.black54,
+                decoration: TextDecoration.lineThrough,
+                fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -278,6 +288,7 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       ),
     );
   }
+
 // user defined function
   void _showDialog(String msg) {
     // flutter defined function
@@ -301,6 +312,7 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       },
     );
   }
+
   _buildButtomNavigationBar() {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -331,23 +343,23 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
             flex: 1,
             child: RaisedButton(
               onPressed: () async {
-                Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+                Future<SharedPreferences> _prefs =
+                    SharedPreferences.getInstance();
                 final SharedPreferences prefs = await _prefs;
                 int ordID = prefs.getInt("orderID");
                 int proid = this.arguments.pr.Proid;
                 double price = this.arguments.pr.Proprice;
-                final responseOrder = await http.Client().post(
-                'http://ecommerence.herokuapp.com/OrdersChild/Insert',
-                headers: <String, String>{
-                  'Content-Type': 'application/json; charset=UTF-8',
-                },
-                body: convert.jsonEncode(<String, String>{
-                  "Ordchordid": ordID.toString(),
-                  "Ordchproid": proid.toString(),
-                  "Ordchprice":price.toString(),
-                  "Ordchdatedime":DateTime.now().toIso8601String(),
-
-                }));
+                final responseOrder = await http.Client()
+                    .post('http://ecommerence.herokuapp.com/OrdersChild/Insert',
+                        headers: <String, String>{
+                          'Content-Type': 'application/json; charset=UTF-8',
+                        },
+                        body: convert.jsonEncode(<String, String>{
+                          "Ordchordid": ordID.toString(),
+                          "Ordchproid": proid.toString(),
+                          "Ordchprice": price.toString(),
+                          "Ordchdatedime": DateTime.now().toIso8601String(),
+                        }));
                 _showDialog("Sepete Eklendi.");
               },
               color: Colors.greenAccent,
