@@ -113,9 +113,9 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
                     Image.network(
                         this.arguments.pr.LProductschild[0].Prochimg1),
                     Image.network(
-                        "https://images-na.ssl-images-amazon.com/images/I/61fPY2WLkTL._UX385_.jpg"),
+                        this.arguments.pr.LProductschild[0].Prochimg2),
                     Image.network(
-                        "https://images-na.ssl-images-amazon.com/images/I/61fPY2WLkTL._UX385_.jpg")
+                        this.arguments.pr.LProductschild[0].Prochimg3)
                   ],
                 ),
                 Container(
@@ -206,11 +206,11 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
       child: Row(
         children: <Widget>[
           Icon(
-            Icons.local_offer,
+            Icons.arrow_forward_ios,
             color: Colors.grey,
           ),
           SizedBox(width: 12.0),
-          Text("Daha Fazla bilgi için tıklayınız ",
+          Text("Ürün kodu = "+this.arguments.pr.Proval,
               style: TextStyle(color: Colors.grey))
         ],
       ),
@@ -277,7 +277,7 @@ class _ProductDetailState extends State with TickerProviderStateMixin {
             child: TabBarView(
               controller: tabController,
               children: <Widget>[
-                Text("%60 Pamuk %30 Polyester",
+                Text(this.arguments.pr.Prodesc,
                     style: TextStyle(color: Colors.black)),
                 Text("30 Derece makinada renkli yıkama",
                     style: TextStyle(color: Colors.black))

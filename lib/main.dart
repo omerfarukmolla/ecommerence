@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'screens/ProductList.dart';
 import 'utilities/routes.dart';
 

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 
 class ProductListRow extends StatelessWidget {
   String name;
+  String proval;
   double currentPrince;
   double orginalPrice;
   int discount;
   String imageUrl;
+  String desc;
   Products prd;
 
   ProductListRow(
@@ -16,6 +18,8 @@ class ProductListRow extends StatelessWidget {
       this.currentPrince,
       this.orginalPrice,
       this.discount,
+      this.desc,
+      this.proval;
       this.imageUrl,
       this.prd});
 
@@ -60,13 +64,13 @@ class ProductListRow extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("\$$currentPrince",
+                      Text("TL"+this.currentPrince.toString(),
                           style:
                               TextStyle(fontSize: 16.0, color: Colors.black87,fontWeight: FontWeight.bold)),
                       SizedBox(
                         width: 8.0,
                       ),
-                      Text("\$$orginalPrice",
+                      Text((this.orginalPrice*2).toString(),
                           style: TextStyle(
                               fontSize: 13.0,
                               color: Colors.black54,
@@ -74,7 +78,7 @@ class ProductListRow extends StatelessWidget {
                       SizedBox(
                         width: 5.0,
                       ),
-                      Text("$discount\% indirim",
+                      Text("50% indirim",
                           style: TextStyle(
                               fontSize: 11.0,
                               color: Colors.black45,fontWeight: FontWeight.bold)),

@@ -72,7 +72,7 @@ class _CountryListState extends State<OrdersViewPosts> {
                       },
                     );
                     ord.lOrdersChild.removeAt(index);
-                    _showDialog("Ürüm Silindi.");
+                    _showDialog("Ürün Silindi.");
                     new Future.delayed(const Duration(seconds: 1))
                         .then((value) => fetchPosts());
                   });
