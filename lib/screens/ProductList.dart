@@ -28,8 +28,22 @@ Future<List<Products>> fetchPosts(
   final SharedPreferences prefs = await _prefs;
   //prefs.clear();
   if (prefs.getInt("orderID") == null) {
-    Orders order;
-    final responseOrder = await client.post(
+    insertOrder(prefs, client);
+  } else {
+    final response = await http.Client().get(
+        'http://ecommerence.herokuapp.com/Orders/GetById?id=' +
+            prefs.getInt("orderID").toString());
+    if (response.body == "") {
+      insertOrder(prefs, client);
+    }
+  }
+  return compute(parsePosts, response.body);
+}
+
+void insertOrder(SharedPreferences prefs, http.Client client) async {
+  var now = new DateTime.now();
+  Orders order;
+  final responseOrder = await client.post(
       'http://ecommerence.herokuapp.com/Orders/Insert',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -38,11 +52,8 @@ Future<List<Products>> fetchPosts(
         "orddatetime": now.toIso8601String(),
         "ordamount": "0"
       }));
-    await compute(parseOrders, responseOrder.body)
-        .then((value) => order = value);
-    prefs.setInt("orderID", order.ordid);
-  }
-  return compute(parsePosts, response.body);
+  await compute(parseOrders, responseOrder.body).then((value) => order = value);
+  prefs.setInt("orderID", order.ordid);
 }
 
 class ProductList extends StatelessWidget {
@@ -56,7 +67,6 @@ class ProductList extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        
         title: Text(
           "Zehaşe BUTİK",
           style: TextStyle(color: Colors.black),
@@ -86,7 +96,6 @@ class ProductList extends StatelessWidget {
               : Center(child: CircularProgressIndicator());
         },
       ),
-      
     );
   }
 }

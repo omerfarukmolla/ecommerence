@@ -55,13 +55,13 @@ class OrdersListRow extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("\$$currentPrince",
+                      Text("\₺$currentPrince",
                           style:
                               TextStyle(fontSize: 16.0, color: Colors.black87,fontWeight: FontWeight.bold)),
                       SizedBox(
                         width: 8.0,
                       ),
-                      Text("\$$orginalPrice",
+                      Text("\₺$orginalPrice",
                           style: TextStyle(
                               fontSize: 15.0,
                               color: Colors.grey,
@@ -69,7 +69,7 @@ class OrdersListRow extends StatelessWidget {
                       SizedBox(
                         width: 8.0,
                       ),
-                      Text("$discount\% indirim",
+                      Text("₺$discount\% indirim",
                           style: TextStyle(
                             fontSize: 14.0,
                             color: Colors.grey,
