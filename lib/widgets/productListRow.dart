@@ -19,7 +19,7 @@ class ProductListRow extends StatelessWidget {
       this.orginalPrice,
       this.discount,
       this.desc,
-      this.proval;
+      this.proval,
       this.imageUrl,
       this.prd});
 
